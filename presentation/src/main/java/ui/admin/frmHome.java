@@ -55,8 +55,8 @@ public class frmHome extends javax.swing.JFrame {
         RoundedPanel contentPanel = new RoundedPanel(50, new Color(233, 233, 255));
         contentPanel.setOpaque(false);
         contentPanel.setLayout(new BorderLayout());
-        contentPanel.add(pnlContainer, BorderLayout.CENTER);
-        pnlContainer.setOpaque(false);
+        contentPanel.add(pnlGlobalContainer, BorderLayout.CENTER);
+        pnlGlobalContainer.setOpaque(false);
 
         JPanel contentWrapper = new JPanel(new BorderLayout());
         contentWrapper.setOpaque(false);
