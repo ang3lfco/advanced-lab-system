@@ -6,6 +6,7 @@ package entities;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,7 +14,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -38,52 +42,33 @@ public class Request implements Serializable {
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="patientId")
     private Patient patient;
+    
+    @OneToMany(mappedBy="request")
+    private List<Result> results;
+    
+    @ManyToMany
+    @JoinTable(name="request_test", 
+            joinColumns = @JoinColumn(name="requestId"), 
+            inverseJoinColumns = @JoinColumn(name="testId"))
+    private List<Test> tests;
 
     public Request() {
     }
 
-    public Request(LocalDateTime requestedAt, String status, Patient patient) {
+    public Request(LocalDateTime requestedAt, String status, Patient patient, List<Result> results, List<Test> tests) {
         this.requestedAt = requestedAt;
         this.status = status;
         this.patient = patient;
+        this.results = results;
+        this.tests = tests;
     }
 
-    public Request(Long id, LocalDateTime requestedAt, String status, Patient patient) {
+    public Request(Long id, LocalDateTime requestedAt, String status, Patient patient, List<Result> results, List<Test> tests) {
         this.id = id;
         this.requestedAt = requestedAt;
         this.status = status;
         this.patient = patient;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public LocalDateTime getRequestedAt() {
-        return requestedAt;
-    }
-
-    public void setRequestedAt(LocalDateTime requestedAt) {
-        this.requestedAt = requestedAt;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Patient getPatient() {
-        return patient;
-    }
-
-    public void setPatient(Patient patient) {
-        this.patient = patient;
+        this.results = results;
+        this.tests = tests;
     }
 }
