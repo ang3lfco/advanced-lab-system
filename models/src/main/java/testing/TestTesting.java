@@ -4,13 +4,10 @@
  */
 package testing;
 
-import entities.Patient;
+import entities.Category;
+import entities.Parameter;
 import entities.Request;
-import entities.Result;
 import entities.Test;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -21,26 +18,28 @@ import javax.persistence.Persistence;
  *
  * @author ang3lfco
  */
-public class RequestTesting {
+public class TestTesting {
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.mycompany_models_jar_1.0-SNAPSHOTPU");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        List<Request> rs = new ArrayList<>();
-        List<Result> results = new ArrayList<>();
-        List<Test> tests = new ArrayList<>();
-        Patient p = new Patient(
-                "Emily",
-                "Johnson",
-                "F",
-                LocalDate.of(1990, Month.JUNE, 5),
-                "1600 Pennsylvania Avenue NW, Washington, DC",
-                "2025550147",
-                "emily.johnson@example.com",
-                rs
+        
+        List<Parameter> parameters = new ArrayList<>();
+        parameters.add(new Parameter("N Gene", "Ct value", new ArrayList<>(), new ArrayList<>()));
+        parameters.add(new Parameter("ORF1ab", "Ct value", new ArrayList<>(), new ArrayList<>()));
+        parameters.add(new Parameter("S Gene", "Ct value", new ArrayList<>(), new ArrayList<>()));
+        Category category = new Category("Virology", new ArrayList<>());
+        List<Request> requests = new ArrayList<>();
+        
+        Test t = new Test(
+                "COVID-19 PCR", 
+                "Detects SARS-CoV-2 RNA using polymerase chain reaction",
+                parameters,
+                category,
+                requests
         );
-        Request r = new Request(LocalDateTime.now(), "In progress", p, results, tests);
-        em.persist(r);
+      
+        em.persist(t);
         em.getTransaction().commit();
         em.close();
         emf.close();

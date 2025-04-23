@@ -6,6 +6,7 @@ package entities;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,13 +37,13 @@ public class Test implements Serializable {
     @Column(name="description")
     private String description;
     
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name="test_parameter", 
             joinColumns = @JoinColumn(name="testId"), 
             inverseJoinColumns = @JoinColumn(name="parameterId"))
     private List<Parameter> parameters;
     
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="categoryId")
     private Category category;
     
