@@ -4,6 +4,10 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>entities.Patient</class>
     <class>entities.Request</class>
+    <class>entities.Parameter</class>
+    <class>entities.Test</class>
+    <class>entities.Result</class>
+    <class>entities.Category</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/clinicallab?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

@@ -6,6 +6,8 @@ package testing;
 
 import entities.Patient;
 import entities.Request;
+import entities.Result;
+import entities.Test;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -25,6 +27,8 @@ public class RequestTesting {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         List<Request> rs = new ArrayList<>();
+        List<Result> results = new ArrayList<>();
+        List<Test> tests = new ArrayList<>();
         Patient p = new Patient(
                 "Emily",
                 "Johnson",
@@ -35,7 +39,7 @@ public class RequestTesting {
                 "emily.johnson@example.com",
                 rs
         );
-        Request r = new Request(LocalDateTime.now(), "In progress", p);
+        Request r = new Request(LocalDateTime.now(), "In progress", p, results, tests);
         em.persist(r);
         em.getTransaction().commit();
         em.close();
