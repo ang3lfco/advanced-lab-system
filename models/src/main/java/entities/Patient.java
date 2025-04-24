@@ -149,4 +149,9 @@ public class Patient implements Serializable {
     public void setRequests(List<Request> requests) {
         this.requests = requests;
     }
+
+    @Override
+    public String toString() {
+        return "Patient{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", gender=" + gender + ", birthdate=" + birthdate + ", address=" + address + ", phoneNumber=" + phoneNumber + ", email=" + email + ", requests=" + requests + '}';
+    }
 }
