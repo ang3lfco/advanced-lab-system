@@ -71,4 +71,52 @@ public class Request implements Serializable {
         this.results = results;
         this.tests = tests;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public LocalDateTime getRequestedAt() {
+        return requestedAt;
+    }
+
+    public void setRequestedAt(LocalDateTime requestedAt) {
+        this.requestedAt = requestedAt;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
+    public List<Result> getResults() {
+        return results;
+    }
+
+    public void setResults(List<Result> results) {
+        this.results = results;
+    }
+
+    public List<Test> getTests() {
+        return tests;
+    }
+
+    public void setTests(List<Test> tests) {
+        this.tests = tests;
+    }
 }
