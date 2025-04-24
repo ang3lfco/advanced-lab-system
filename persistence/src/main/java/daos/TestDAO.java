@@ -7,6 +7,7 @@ package daos;
 import entities.Test;
 import exceptions.PersistenceException;
 import interfaces.IDBConnection;
+import interfaces.ITestDAO;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -17,13 +18,14 @@ import javax.persistence.criteria.Root;
  *
  * @author ang3lfco
  */
-public class TestDAO {
+public class TestDAO implements ITestDAO{
     private IDBConnection conn;
     
     public TestDAO(IDBConnection conn){
         this.conn = conn;
     }
     
+    @Override
     public void create(Test test){
         EntityManager em = conn.getEntityManager();
         try{
@@ -40,6 +42,7 @@ public class TestDAO {
         }
     }
     
+    @Override
     public Test read(Long id){
         EntityManager em = conn.getEntityManager();
         try{
@@ -53,6 +56,7 @@ public class TestDAO {
         }
     }
     
+    @Override
     public void update(Test test){
         EntityManager em = conn.getEntityManager();
         try{
@@ -69,6 +73,7 @@ public class TestDAO {
         }
     }
     
+    @Override
     public void delete(Long id){
         EntityManager em = conn.getEntityManager();
         try{
@@ -88,6 +93,7 @@ public class TestDAO {
         }
     }
     
+    @Override
     public List<Test> getTests(){
         EntityManager em = conn.getEntityManager();
         try{

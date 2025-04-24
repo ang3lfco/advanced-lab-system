@@ -6,6 +6,7 @@ package daos;
 
 import exceptions.PersistenceException;
 import interfaces.IDBConnection;
+import interfaces.IParameterDAO;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Parameter;
@@ -17,13 +18,14 @@ import javax.persistence.criteria.Root;
  *
  * @author ang3lfco
  */
-public class ParameterDAO {
+public class ParameterDAO implements IParameterDAO{
     private IDBConnection conn;
     
     public ParameterDAO(IDBConnection conn){
         this.conn = conn;
     }
     
+    @Override
     public void create(Parameter parameter){
         EntityManager em = conn.getEntityManager();
         try{
@@ -40,6 +42,7 @@ public class ParameterDAO {
         }
     }
     
+    @Override
     public Parameter read(Long id){
         EntityManager em = conn.getEntityManager();
         try{
@@ -53,6 +56,7 @@ public class ParameterDAO {
         }
     }
     
+    @Override
     public void update(Parameter parameter){
         EntityManager em = conn.getEntityManager();
         try{
@@ -69,6 +73,7 @@ public class ParameterDAO {
         }
     }
     
+    @Override
     public void delete(Long id){
         EntityManager em = conn.getEntityManager();
         try{
@@ -88,6 +93,7 @@ public class ParameterDAO {
         }
     }
     
+    @Override
     public List<Parameter> getParameters(){
         EntityManager em = conn.getEntityManager();
         try{

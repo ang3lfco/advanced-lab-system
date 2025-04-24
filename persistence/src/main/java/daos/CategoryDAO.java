@@ -6,6 +6,7 @@ package daos;
 
 import entities.Category;
 import exceptions.PersistenceException;
+import interfaces.ICategoryDAO;
 import interfaces.IDBConnection;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -17,13 +18,14 @@ import javax.persistence.criteria.Root;
  *
  * @author ang3lfco
  */
-public class CategoryDAO {
+public class CategoryDAO implements ICategoryDAO{
     private IDBConnection conn;
     
     public CategoryDAO(IDBConnection conn){
         this.conn = conn;
     }
     
+    @Override
     public void create(Category category){
         EntityManager em = conn.getEntityManager();
         try{
@@ -40,6 +42,7 @@ public class CategoryDAO {
         }
     }
     
+    @Override
     public Category read(Long id){
         EntityManager em = conn.getEntityManager();
         try{
@@ -53,6 +56,7 @@ public class CategoryDAO {
         }
     }
     
+    @Override
     public void update(Category category){
         EntityManager em = conn.getEntityManager();
         try{
@@ -69,6 +73,7 @@ public class CategoryDAO {
         }
     }
     
+    @Override
     public void delete(Long id){
         EntityManager em = conn.getEntityManager();
         try{
@@ -88,6 +93,7 @@ public class CategoryDAO {
         }
     }
     
+    @Override
     public List<Category> getCategories(){
         EntityManager em = conn.getEntityManager();
         try{

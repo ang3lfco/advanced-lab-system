@@ -7,6 +7,7 @@ package daos;
 import entities.Request;
 import exceptions.PersistenceException;
 import interfaces.IDBConnection;
+import interfaces.IRequestDAO;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -17,13 +18,14 @@ import javax.persistence.criteria.Root;
  *
  * @author ang3lfco
  */
-public class RequestDAO {
+public class RequestDAO implements IRequestDAO{
     private IDBConnection conn;
     
     public RequestDAO(IDBConnection conn){
         this.conn = conn;
     }
     
+    @Override
     public void create(Request request){
         EntityManager em = conn.getEntityManager();
         try{
@@ -40,6 +42,7 @@ public class RequestDAO {
         }
     }
     
+    @Override
     public Request read(Long id){
         EntityManager em = conn.getEntityManager();
         try{
@@ -53,6 +56,7 @@ public class RequestDAO {
         }
     }
     
+    @Override
     public void update(Request request){
         EntityManager em = conn.getEntityManager();
         try{
@@ -69,6 +73,7 @@ public class RequestDAO {
         }
     }
     
+    @Override
     public void delete(Long id){
         EntityManager em = conn.getEntityManager();
         try{
@@ -88,6 +93,7 @@ public class RequestDAO {
         }
     }
     
+    @Override
     public List<Request> getRequests(){
         EntityManager em = conn.getEntityManager();
         try{

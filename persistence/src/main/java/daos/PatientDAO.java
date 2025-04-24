@@ -7,6 +7,7 @@ package daos;
 import entities.Patient;
 import exceptions.PersistenceException;
 import interfaces.IDBConnection;
+import interfaces.IPatientDAO;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -17,13 +18,14 @@ import javax.persistence.criteria.Root;
  *
  * @author ang3lfco
  */
-public class PatientDAO {
+public class PatientDAO implements IPatientDAO{
     private IDBConnection conn;
     
     public PatientDAO(IDBConnection conn){
         this.conn = conn;
     }
     
+    @Override
     public void create(Patient patient){
         EntityManager em = conn.getEntityManager();
         try{
@@ -40,6 +42,7 @@ public class PatientDAO {
         }
     }
     
+    @Override
     public Patient read(Long id){
         EntityManager em = conn.getEntityManager();
         try{
@@ -53,6 +56,7 @@ public class PatientDAO {
         }
     }
     
+    @Override
     public void update(Patient patient){
         EntityManager em = conn.getEntityManager();
         try{
@@ -69,6 +73,7 @@ public class PatientDAO {
         }
     }
     
+    @Override
     public void delete(Long id){
         EntityManager em = conn.getEntityManager();
         try{
@@ -88,6 +93,7 @@ public class PatientDAO {
         }
     }
     
+    @Override
     public List<Patient> getPatients(){
         EntityManager em = conn.getEntityManager();
         try{
