@@ -1,3 +1,4 @@
+# Advanced Clinical Laboratory Management System
 
 ## Initial design
 ![example1](https://github.com/user-attachments/assets/d0ae2578-188b-4646-b4a2-54afb1ecc9e7)
