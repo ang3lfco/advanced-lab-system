@@ -5,6 +5,7 @@
 package ui.admin;
 
 import components.RoundedPanel;
+import interfaces.IPatientService;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JPanel;
@@ -15,15 +16,16 @@ import javax.swing.border.EmptyBorder;
  * @author ang3lfco
  */
 public class frmHome extends javax.swing.JFrame {
-    
+    private IPatientService patientService;
     private JPanel selectedPanel;
     /**
      * Creates new form frmHome
      */
-    public frmHome() {
+    public frmHome(IPatientService patientService) {
         setUndecorated(true);
         setBackground(new Color(0, 0, 0, 0));
         initComponents();
+        this.patientService = patientService;
         setLocationRelativeTo(null);
         
         JPanel homePanel = new pnlHome();
@@ -366,11 +368,11 @@ public class frmHome extends javax.swing.JFrame {
         pnlMenuLayout.setVerticalGroup(
             pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlMenuLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(36, 36, 36)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
-                .addGap(57, 57, 57)
+                .addGap(43, 43, 43)
                 .addComponent(pnlMenuHome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlMenuPatients, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -382,7 +384,7 @@ public class frmHome extends javax.swing.JFrame {
                 .addComponent(pnlMenuTest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlMenuResult, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
 
         pnlTitleBar.setBackground(new java.awt.Color(233, 233, 255));
@@ -482,7 +484,7 @@ public class frmHome extends javax.swing.JFrame {
 
     private void pnlMenuPatientsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlMenuPatientsMouseClicked
         // TODO add your handling code here:
-        JPanel patientsPanel = new pnlPatients();
+        JPanel patientsPanel = new pnlPatients(patientService);
         pnlContainer.removeAll();
         pnlContainer.setLayout(new BorderLayout());
         pnlContainer.add(patientsPanel, BorderLayout.CENTER);
